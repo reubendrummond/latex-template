@@ -1,0 +1,82 @@
+% -------------------------------------
+% Preprocessing directives
+% -------------------------------------
+
+
+%%
+
+
+%!TEX TS-program = xelatex
+%!TEX options =  -output-directory=. -shell-escape -file-line-error -interaction=nonstopmode -halt-on-error -synctex=1 "%DOC%"
+
+
+
+% -------------------------------------
+% Preamble
+% -------------------------------------
+\documentclass[11pt, twoside]{article}
+
+% comment out to stop compiling bib
+\def \compilebib {}
+
+\input{src/bib.tex}
+\input{src/packages.tex}
+\input{LaTeX-Submodule/template.tex}
+\input{src/utils.tex}
+\input{src/globals.tex}
+\input{src/samples/headers/1.tex}
+
+\begin{document}
+
+% -------------------------------------
+% Title page
+% -------------------------------------
+
+\input{src/samples/title_page/1.tex}
+\pagenumbering{roman}
+
+\newpage
+
+% -------------------------------------
+% Contents
+% -------------------------------------
+
+\tableofcontents
+\listoffigures
+\listoftables
+\listoflistings
+
+% -------------------------------------
+% Begin body
+% -------------------------------------
+
+\pagenumbering{arabic}
+\newpage
+
+\section{Introduction}
+Intro
+
+\landscapepage
+\section{Landscape}
+Landscape
+
+\portraitpage
+
+\ifdefined\compilebib
+
+    \newpage
+    \nocite{*}
+    \printbibliography
+
+\fi
+
+\newpage
+
+\begin{appendices}
+    % \section{First}
+    % \subsection{Sub 1}
+    % \subsection{Sub 2}
+\end{appendices}
+
+
+\end{document}

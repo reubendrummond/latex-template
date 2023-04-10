@@ -1,0 +1,32 @@
+
+% big O notation
+\newcommand*{\bigO}[1]{$\mathcal{O}{(#1)}$}
+
+% define new environments
+% \DeclareFloatingEnvironment[fileext=al,placement={!ht},name=Algorithm]{algorithm_env}
+% \captionsetup[algorithm_env]{labelfont=bf}
+% \newenvironment{algorithm}{\captionsetup{type=algorithm_env,skip=10pt}}{ \vspace*{12pt}}
+
+% 
+\usepackage{ifthen}
+\newcommand\changepapersize[1]{%
+    \ifthenelse{\equal{#1}{portrait}}
+    {
+        \defaultareasettings
+    }
+    {
+        \cleardoublepage
+        \KOMAoptions{paper=#1,DIV=last}%
+        \newgeometry{margin=1in,footskip=0.5in}%
+        \fancyfootoffset{0pt}
+    }
+}
+\AtBeginDocument{\storeareas\defaultareasettings}
+\BeforeRestoreareas{\clearpage}
+
+\newcommand\landscapepage {
+    \changepapersize{landscape}
+}
+\newcommand\portraitpage {
+    \changepapersize{portrait}
+}
