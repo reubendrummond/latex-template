@@ -41,10 +41,10 @@
 % Contents
 % -------------------------------------
 
-\tableofcontents
-\listoffigures
-\listoftables
-\listoflistings
+% \tableofcontents
+% \listoffigures
+% \listoftables
+% \listoflistings
 
 % -------------------------------------
 % Begin body
@@ -53,22 +53,22 @@
 \pagenumbering{arabic}
 \newpage
 
-\section{Introduction}
-Intro
+\begin{enumerate}
+    \item \input{src/questions/1.tex}
 
-\landscapepage
-\section{Landscape}
-Landscape
 
-\portraitpage
+\end{enumerate}
 
-\ifdefined\compilebib
+% \landscapepage
+% \section{Landscape}
+% Landscape
 
-    \newpage
-    \nocite{*}
-    \printbibliography
+% \portraitpage
 
-\fi
+\newpage
+\nocite{*}
+\printbibliography
+
 
 \newpage
 
