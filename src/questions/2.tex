@@ -4,7 +4,83 @@ In each question, assume $T(c)$ is bounded by a constant for any small constant 
 \begin{enumerate}
     \item $T(n) \le 9\,T(\frac{n}{3}) + n^2$
 
+          Equating with the master theorem, we get,
+
+          \begin{align*}
+              a & = 9                             \\
+              b & = 3                             \\
+              y & = 2                             \\
+              x & = \log_b{a} = \log_3{9} = 2 = y
+          \end{align*}
+
+          Since $x = y$, the recursion tree is `balanced' and the runtime is given by, $O\left( n^y \log_b{n} \right)$.
+
+          \begin{align*}
+              \therefore T(n) \in O\left( n^2 \log{n} \right)
+          \end{align*}
+
     \item $T(n) \le 4\,T(\frac{n}{4}) + n \log n$
 
+          Using the recursion tree method, we have that the number of nodes increases by a factor of $4$ and
+          the size of each node decreases by a factor of $4$ as the recursion level increases.
+          Taking $k = \lceil \log_4{n} \rceil$ and $m = 4^k$, we have,
+
+          \begin{align*}
+              T(n) & \le T(m)                                                                                                                                                                                                                    \\
+                   & = m \log{m} + 4 \times \frac{m}{4} \log{\left( \frac{m}{4} \right)} + 4^2 \times \frac{m}{4^2} \log{\left( \frac{n}{4^2} \right)} + ... + 4^{k-1} \times \frac{m}{4^{k - 1}} \log{\left( \frac{m}{4^{k - 1}} \right)} + d m \\
+                   & = m \sum_{i=0}^{k-1} \left( \frac{1}{4^i} \log{\left(\frac{m}{4^i}\right)} \right)                                                                                                                                          \\
+                   & \le m \sum_{i=0}^{k-1} \left( \log{\left(\frac{m}{4^i}\right)} \right)                                                                                                                                                      \\
+                   & = m \sum_{i=0}^{k-1} \left( \log{m} - \log{4^i}  \right)                                                                                                                                                                    \\
+          \end{align*}
+
+          Noting that $k = \log_4{m}$, we have,
+          \begin{align*}
+              T(n) & = m \sum_{i=1}^{\log_4{m}} \left( \log{m} \right) - \sum_{i=0}^{k-1}\left(\log_4{4^i}\right) \\
+                   & = m \log{m} \log{m} - \sum_{i=1}^{k-1}\left(i\right)                                         \\                                                                                                                             \\
+                   & = m \log{m} \log{m} - \frac{k\left(k-1\right)}{2}                                            \\
+                   & \le m \log{m} \log{m}
+          \end{align*}
+
+          Hence, since $m \propto n$, we conclude that $T\left(n\right) \in O\left(n \log{n} \log{n} \right)$.
+
     \item $T(n) \le \sqrt{n} \cdot T(\sqrt{n}) + n$
+
+          Take $n \le 2^k = m$ where $k = \lceil \log_2{n} \rceil$. We have,
+
+          \begin{align*}
+              T\left(2^k\right)             & = 2^\frac{k}{2} T\left(2^\frac{k}{2}\right) + 2^k         \\
+              \frac{T\left(2^k\right)}{2^k} & = \frac{1}{2^\frac{k}{2}} T\left(2^\frac{k}{2}\right) + 1 \\
+          \end{align*}
+
+          Defining $S\left(k\right) = \frac{T\left(2^k\right)}{2^k}$, we have,
+
+          \begin{align*}
+              S\left(k\right) & = S\left(\frac{k}{2}\right) + 1
+          \end{align*}
+
+          Using the master theorem, we have that,
+
+          \begin{align*}
+              a & = 1                             \\
+              b & = 2                             \\
+              y & = 0                             \\
+              x & = \log_b{a} = \log_2{1} = 0 = y
+          \end{align*}
+
+          Therefore, the recursion is considered to be balanced, so the runtime is given by, $O\left( n^y \log_b{n} \right)$.
+
+          \begin{align*}
+              \therefore S(k) \in O\left( k^0 \log{k} \right) =  O\left( \log{k} \right)
+          \end{align*}
+
+          That is, $S(k) \le c \log{k}$ where $c$ is some constant.
+
+          \begin{align*}
+              T\left(m\right) = T\left(2^k\right) & = 2^k S\left(k\right)              \\
+                                                  & \le 2^{\log_2{m}} \times c \log{k} \\
+                                                  & = c m \log{\log{m}}                \\
+          \end{align*}
+
+          Since $m \propto n$, we have that $T\left(n\right) \in O\left(n \log{\left(\log{n}\right)}\right)$.
+
 \end{enumerate}
