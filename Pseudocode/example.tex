@@ -1,0 +1,30 @@
+\begin{minted}[escapeinside=??, fontfamily=lmr]{text}
+?\sffamily{\textbf{ALGORITHM}}? ?\textit{SelectSort}?(?\(A\left[0..n - 1\right]\)?)?\tikzmark[exampleL1]{exampleL1}?
+?/\!/?? Selection sort algorithm.??\tikzmark[exampleL2]{exampleL2}?
+?\textbf{for}? ?\(i \leftarrow 0\)? ?\textbf{to}? ?\(n - 1\)? ?\textbf{do}??\tikzmark{exampleL3}?
+    ?\(SmallSub \leftarrow i\)?
+    ?\textbf{for}? ?\(j \leftarrow i + 1\)? ?\textbf{to}? ?\(n - 1\)? ?\textbf{do}??\tikzmark{exampleL5}?
+        ?\textbf{if}? ?\(A[j] < A[SmallSub]\)? ?\textbf{then}??\tikzmark{exampleL6}?
+            ?\(SmallSub \leftarrow j\)??\tikzmark{exampleL7}?
+
+    ?\(temp \leftarrow A[i]\)?
+    ?\(A[SmallSub] \leftarrow temp\)??\tikzmark{exampleL10}?
+
+?\textbf{return}? ?\(A\)?
+\end{minted}
+\begin{tikzpicture}[remember picture,overlay]
+\coordinate (exampleBASEX) at (7, 0);
+\draw ({pic cs:exampleL1}-|exampleBASEX) coordinate (exampleA);
+\draw ({pic cs:exampleL2}-|exampleBASEX) coordinate (exampleB);
+\tikzmath{coordinate \exampleDVEC;
+    \exampleDVEC = (exampleA)-(exampleB);
+    \exampleD = (\exampleDVECy);
+    \exampleD = \convertto{cm}{\exampleD pt};
+}
+\draw (exampleA) ++ (0, {0.75cm*\exampleD}) [decorate, decoration = {calligraphic brace, amplitude=5pt}, line width=1.25pt]
+++ (0, {-5*\exampleD}) --++ (0, {-1*\exampleD}) node [black,midway,xshift=0.2cm,anchor=west] {\(O\left( 1 \right)\)};
+\draw (exampleA) ++ (1.5, {0.75cm*\exampleD}) [decorate, decoration = {calligraphic brace, amplitude=5pt}, line width=1.25pt]
+++ (0, {-4*\exampleD}) --++ (0, {-3*\exampleD}) node [black,midway,xshift=0.2cm,anchor=west] {\(O\left( n \right)\)};
+\draw (exampleA) ++ (3.0, {0.75cm*\exampleD}) [decorate, decoration = {calligraphic brace, amplitude=5pt}, line width=1.25pt]
+++ (0, {-2*\exampleD}) --++ (0, {-8*\exampleD}) node [black,midway,xshift=0.2cm,anchor=west] {\(O\left( n^2 \right)\)};
+\end{tikzpicture}

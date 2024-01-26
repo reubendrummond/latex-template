@@ -7,5 +7,19 @@ between nodes of the tree. Design an efficient divide and conquer algorithm to c
 \end{itemize}
 
 Provide a pseudocode and a $\Theta$ bound in the runtime analysis. A proof of correctness is always required.
+\\
 
+The implementation of the $\textsc{DiameterOfBinaryTree}$ algorithm is,
 \input{Pseudocode/q_four.tex}
+\leavevmode\newline
+The algorithm is essentially a modified max height algorithm. The height at a particular level is
+the height of the left and right sub-branches plus 1, which is the result returned from the function.
+These results can also be used to find the diameter which passes through the current node, simply by
+adding the depths of the left and right branches. This is because the total number of nodes in the path
+will be $\text{height of left} + \text{height of right} + 1$, which means the number of edges (diameter) is
+$\text{height of left} + \text{height of right}$. Lastly, the diameter of the tree is modified to be
+the maximum of all the diameters which pass through each node. \\
+
+Since the algorithm involves a depth-first traversal of the tree with constant time operations at each
+level, we can conclude that the algorithm $\in \Theta\left(n\right)$, where $n$ is the number of nodes
+in the tree.

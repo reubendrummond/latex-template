@@ -1,30 +1,22 @@
 \begin{minted}[escapeinside=??, fontfamily=lmr]{text}
-?\sffamily{\textbf{ALGORITHM}}? ?\textit{SelectSort}?(?\(A\left[0..n - 1\right]\)?)?\tikzmark[qfourL1]{qfourL1}?
-?/\!/?? Selection sort algorithm.??\tikzmark[qfourL2]{qfourL2}?
-?\textbf{for}? ?\(i \leftarrow 0\)? ?\textbf{to}? ?\(n - 1\)? ?\textbf{do}??\tikzmark{qfourL3}?
-    ?\(SmallSub \leftarrow i\)?
-    ?\textbf{for}? ?\(j \leftarrow i + 1\)? ?\textbf{to}? ?\(n - 1\)? ?\textbf{do}??\tikzmark{qfourL5}?
-        ?\textbf{if}? ?\(A[j] < A[SmallSub]\)? ?\textbf{then}??\tikzmark{qfourL6}?
-            ?\(SmallSub \leftarrow j\)??\tikzmark{qfourL7}?
+?\sffamily{\textbf{ALGORITHM}}? ?\(\textsc{DiameterOfBinaryTree}\)?(?\(T\)?)
+    ?\(diameter \leftarrow 0\)?
+    ?\(\textsc{DiameterOfBinaryTreeRecursive}(T, diameter)\)?
+    ?\textbf{return}? ?\(diameter\)?
 
-    ?\(temp \leftarrow A[i]\)?
-    ?\(A[SmallSub] \leftarrow temp\)??\tikzmark{qfourL10}?
+?\sffamily{\textbf{ALGORITHM}}? ?\(\textsc{DiameterOfBinaryTreeRecursive}\)?(?\(T\)?, ?\(diameter\)?)
+    ?\(root \leftarrow \textsc{Root}(\)?T?\()\)?
 
-?\textbf{return}? ?\(A\)?
+    ?\textbf{if}? ?\(root\)? is ?\(\textsc{NULL}\)?
+        ?\textbf{return}? 0
+
+    ?\(leftChild \leftarrow \textsc{LeftChild}(\)?T?\()\)?
+    ?\(rightChild \leftarrow \textsc{RightChild}(\)?T?\()\)?
+
+    ?\(leftHeight \leftarrow \textsc{DiameterOfBinaryTreeRecursive}(leftChild, diameter)\)?
+    ?\(rightHeight \leftarrow \textsc{DiameterOfBinaryTreeRecursive}(rightChild, diameter)\)?
+
+    ?\(diameter \leftarrow \textsc{max}(leftHeight + rightHeight, diameter)\)?
+
+    ?\textbf{return}? ?\(\textsc{max}(leftHeight, rightHeight) + 1\)?
 \end{minted}
-\begin{tikzpicture}[remember picture,overlay]
-\coordinate (qfourBASEX) at (7, 0);
-\draw ({pic cs:qfourL1}-|qfourBASEX) coordinate (qfourA);
-\draw ({pic cs:qfourL2}-|qfourBASEX) coordinate (qfourB);
-\tikzmath{coordinate \qfourDVEC;
-    \qfourDVEC = (qfourA)-(qfourB);
-    \qfourD = (\qfourDVECy);
-    \qfourD = \convertto{cm}{\qfourD pt};
-}
-\draw (qfourA) ++ (0, {0.75cm*\qfourD}) [decorate, decoration = {calligraphic brace, amplitude=5pt}, line width=1.25pt]
-++ (0, {-5*\qfourD}) --++ (0, {-1*\qfourD}) node [black,midway,xshift=0.2cm,anchor=west] {\(O\left( 1 \right)\)};
-\draw (qfourA) ++ (1.5, {0.75cm*\qfourD}) [decorate, decoration = {calligraphic brace, amplitude=5pt}, line width=1.25pt]
-++ (0, {-4*\qfourD}) --++ (0, {-3*\qfourD}) node [black,midway,xshift=0.2cm,anchor=west] {\(O\left( n \right)\)};
-\draw (qfourA) ++ (3.0, {0.75cm*\qfourD}) [decorate, decoration = {calligraphic brace, amplitude=5pt}, line width=1.25pt]
-++ (0, {-2*\qfourD}) --++ (0, {-8*\qfourD}) node [black,midway,xshift=0.2cm,anchor=west] {\(O\left( n^2 \right)\)};
-\end{tikzpicture}

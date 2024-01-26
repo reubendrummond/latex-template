@@ -1,16 +1,20 @@
-ALGORITHM SelectSort($A\left[0..n - 1\right]$)
-// Selection sort algorithm.
-for $i \leftarrow 0$ to $n - 1$ do
-    $SmallSub \leftarrow i$
-    for $j \leftarrow i + 1$ to $n - 1$ do
-        if $A[j] < A[SmallSub]$ then
-            $SmallSub \leftarrow j$
+ALGORITHM $\textsc{DiameterOfBinaryTree}$($T$)
+    $diameter \leftarrow 0$
+    $\textsc{DiameterOfBinaryTreeRecursive}(T, diameter)$
+    return $diameter$
 
-    $temp \leftarrow A[i]$
-    $A[SmallSub] \leftarrow temp$
+ALGORITHM $\textsc{DiameterOfBinaryTreeRecursive}$($T$, $diameter$)
+    $root \leftarrow \textsc{Root}($T$)$
 
-return $A$
-:{0}{6:6}\(O\left( 1 \right)\)
-:{1}{5:7}\(O\left( n \right)\)
-:{2}{3:10}\(O\left( n^2 \right)\)
->{7}{1.5, 1.5}
+    if $root$ is $\textsc{NULL}$
+        return 0
+
+    $leftChild \leftarrow \textsc{LeftChild}($T$)$
+    $rightChild \leftarrow \textsc{RightChild}($T$)$
+
+    $leftHeight \leftarrow \textsc{DiameterOfBinaryTreeRecursive}(leftChild, diameter)$
+    $rightHeight \leftarrow \textsc{DiameterOfBinaryTreeRecursive}(rightChild, diameter)$
+
+    $diameter \leftarrow \textsc{max}(leftHeight + rightHeight, diameter)$
+
+    return $\textsc{max}(leftHeight, rightHeight) + 1$
