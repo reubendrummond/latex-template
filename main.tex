@@ -2,14 +2,8 @@
 % Preprocessing directives
 % -------------------------------------
 
-
-%%
-
-
 %!TEX TS-program = xelatex
-%!TEX options =  -output-directory=. -shell-escape -file-line-error -interaction=nonstopmode -halt-on-error -synctex=1 "%DOC%"
-
-
+%!TEX options =  -output-directory=aux -shell-escape -file-line-error -interaction=nonstopmode -halt-on-error -synctex=1 "%DOC%"
 
 % -------------------------------------
 % Preamble
@@ -18,7 +12,8 @@
 
 % comment out to stop compiling bib
 \def \compilebib {}
-
+\input{pseudocode-preamble.sty}
+\setminted{linenos} % Style your minted environments here
 \input{src/bib.tex}
 \input{src/packages.tex}
 \input{LaTeX-Submodule/template.tex}
@@ -57,9 +52,10 @@
     \item \input{src/questions/1.tex}
     \item \input{src/questions/2.tex}
     \item \input{src/questions/3.tex}
-
-
+    \item \input{src/questions/4.tex}
 \end{enumerate}
+
+
 
 % \landscapepage
 % \section{Landscape}
