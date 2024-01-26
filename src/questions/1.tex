@@ -106,19 +106,11 @@
                     Since $c \ge \frac{1}{2}$, we conclude that $\log{f \left( n \right)} \notin o\left( \log{g \left( n \right)} \right)$.
                     Therefore, we have disproven the original statement by counter example.
 
-
-
-
-
-
-
-
-
-
           \end{enumerate}
     \item {[6 marks]} Analyze the following pseudocode and give a tight ($\Theta$) bound on the running time
           as a function of $n$. You can assume that all individual instructions
           (including logarithm) are elementary, i.e., take constant time. Show your work.
+
           \verb|     |$l$ \verb| := | 0;\\
           \verb|     for |$i=n+1$ \verb| to | $ n^2 $ \verb| do |\\
           \verb|       for |$j=1$ \verb| to | $\left\lceil \log{i} \right\rceil$ \verb|  do |\\
@@ -157,6 +149,6 @@
           \end{align*}
 
           Clearly, the highest order term is proportional to $n^2 \log{n}$. Therefore, we can conclude the tight
-          bound is $\Theta\left(n^2 \log{n}\right)$
+          bound is $\Theta\left(n^2 \log{n}\right)$.
 
 \end{enumerate}
