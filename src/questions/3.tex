@@ -1,0 +1,33 @@
+{[10 marks]} Stavros and Jessica are discussing about runtime of an algorithm which is given
+by the following recurrence relation:
+$$T(m) = T\left(\frac{m}{3}\right) + T\left(\frac{2m}{3}\right) + c^2m, \;\;\; T(1)=d.$$
+{\bf Stavros:} I think $T(m)\in O(m\log m)$. Let's use recursion tree method to show
+this. The longest path from the root to a leaf is $\log_{\frac{3}{2}}m$. after drawing
+the tree
+we can see the cost of each level (including the last one) is less than or equal to $c^2m$. So, the total cost
+is $$c^2m\log_{\frac{3}{2}}m \in O(m\log m).$$
+{\bf Jessica:} I believe $T(m) \in \omega (m \log m)$. Actually based on your argument,
+$T(m)$ is exponential in terms of $m$. I agree with the upper bound on the height of
+the recursion tree which is $\log_{\frac{3}{2}}m$. However, using the fact that the tree
+may have $2^{\log_{\frac{3}{2}}m}$ leaves (based on its height) and the cost of a leaf being the constant d,
+we can see that the cost of leaves is exponential in $m$. That is why $T(m)$ is in
+$\omega (m \log m)$ and this implies that $T(m)$ cannot be in $O(m \log m)$.
+\\
+\\
+Explain in {\bf details}, what is correct and what is wrong in the above discussion.
+More precisely, provide details on which part of their argument is correct and which
+part is not. Moreover, provide a tight bound for $T(m)$ and justify your answer only
+for the upper bound.
+\\
+\\
+
+Starvos is correct that the longest path to the root is $\log_{\frac{3}{2}}{m}$. He is wrong that each level is proportional to $c^2 m$. For levels less than $\log_{3}{m}$ (the depth of the shortest branch), indeed each level has a cost of $c^2 m$ as a simple illustration shows. However, when there are levels where nodes have reached the base case, we cannot necessarily say the level has a cost $\le c^2 m$. A simply way to see this is to consider the last level which has one node of cost $d$. Taking $c = 1$, we can see if $d > m$ then one level has cost $> c^2 m$ which disproves Starvos' claim. However, this is largely unimportant; what is more important to note is that each level has a cost which is proportional to $m$, which I believe is what Stevos' was trying to get at.
+
+One of Starvos' key mistakes is his failure to consider the leaves, which Jesica addresses. She claims that based on the height of the tree, there are $2^{\log_{\frac{3}{2}}{m}}$ leaves. This is not quite correct as $2^{\log_{\frac{3}{2}}{m}}$ is an upper bound for the number of leaves ,since branches terminate (reach the base case) at different points. In saying this, we can use this as an upper bound for our analysis to find the big-O runtime so we can proceed with Jesica's reasoning.
+
+Jessica continues by suggesting that the tree is leave-heavy; that is, the cost of the base cases are proportional to the number of leaves $2^{\log_{\frac{3}{2}}{m}}$ which she says is exponential. However, $2^{\log_{\frac{3}{2}}{m}}$ is not exponential:
+$$
+    2^{\log_{\frac{3}{2}}{m}} = m^{\log_{\frac{3}{2}}{2}} \approx m^{1.71}
+$$
+
+If it were exponential, Jessica would be correct in reaching the conclusion that $m \log{m}$ is a strict lower bound; that is, $T(m) \in \omega (m \log{m})$. If this were true, it would also be correct that $T(m) \notin O(m \log{m})$, since $\omega$ and $O$ are mutually exclusive.
