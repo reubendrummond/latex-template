@@ -42,5 +42,6 @@
 # Miscellaneous 
 *.fls
 *.lol
+_minted*
 
 aux

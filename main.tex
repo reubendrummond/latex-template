@@ -2,21 +2,34 @@
 % Preprocessing directives
 % -------------------------------------
 
-%!TEX TS-program = xelatex
-%!TEX options =  -output-directory=aux -shell-escape -file-line-error -interaction=nonstopmode -halt-on-error -synctex=1 "%DOC%"
+% Latex Workshop settings:
+% "latex-workshop.latex.outDir": "Debug",
+% "latex-workshop.latex.tools": [
+% {
+% "name": "latexmk",
+% "command": "latexmk",
+% "args": [
+%       "-synctex=1",
+%       "-interaction=nonstopmode",
+%       "-file-line-error",
+%       "-shell-escape",
+%       "-xelatex",
+%       "-outdir=%OUTDIR%",
+%       "%DOC%"
+% ],
+% "env": {}
+% },
 
 % -------------------------------------
 % Preamble
 % -------------------------------------
 \documentclass[11pt, twoside]{article}
 
-% comment out to stop compiling bib
-\def \compilebib {}
-\input{pseudocode-preamble.sty}
-\setminted{linenos} % Style your minted environments here
-\input{src/bib.tex}
 \input{src/packages.tex}
-\input{LaTeX-Submodule/template.tex}
+
+\setminted{linenos} % Style your minted environments here
+\input{pseudocode-preamble.sty}
+\input{src/bib.tex}
 \input{src/utils.tex}
 \input{src/globals.tex}
 \input{src/samples/headers/1.tex}
@@ -27,8 +40,8 @@
 % Title page
 % -------------------------------------
 
+\thispagestyle{empty}
 \input{src/samples/title_page/1.tex}
-\pagenumbering{roman}
 
 \newpage
 
@@ -36,10 +49,10 @@
 % Contents
 % -------------------------------------
 
-% \tableofcontents
-% \listoffigures
-% \listoftables
-% \listoflistings
+\phantomsection\tableofcontents
+\phantomsection\listoffigures
+\phantomsection\listoftables
+\phantomsection\listoflistings
 
 % -------------------------------------
 % Begin body
@@ -48,36 +61,32 @@
 \pagenumbering{arabic}
 \newpage
 
-\begin{enumerate}
-    \item \input{src/questions/1.tex}
-          \newpage
-    \item \input{src/questions/2.tex}
-          \newpage
-    \item \input{src/questions/3.tex}
-          \newpage
-    \item \input{src/questions/4.tex}
-\end{enumerate}
+\section{Pseudocode}
+\input{Pseudocode/example.tex}
 
+\landscapepage
+\section{Landscape}
+Landscape
 
+\portraitpage
+\section{Portrait Again}
+\cite{colu92}
 
-% \landscapepage
-% \section{Landscape}
-% Landscape
+\newpage
 
-% \portraitpage
+% -------------------------------------
+% Bibliography
+% -------------------------------------
 
-% \newpage
-% \nocite{*}
-% \printbibliography
+\nocite{*}
+\printbibliography
 
+\newpage
 
-% \newpage
-
-% \begin{appendices}
-%     % \section{First}
-%     % \subsection{Sub 1}
-%     % \subsection{Sub 2}
-% \end{appendices}
+\begin{appendices}
+      \section{First}
+      \subsection{Sub 1}
+\end{appendices}
 
 
 \end{document}
